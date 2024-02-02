@@ -1,4 +1,26 @@
 //Variables globales
+let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+let sectionBotonReiniciar = document.getElementById('reiniciar')
+let botonMascotaJugador = document.getElementById("boton-mascota");
+let botonFuego = document.getElementById('boton-fuego');
+let botonAgua = document.getElementById('boton-agua');
+let botonTierra = document.getElementById('boton-tierra')
+let botonReiniciar = document.getElementById('boton-reiniciar')
+
+
+let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
+
+let spanMascotaEnemigo = document.getElementById('mascota-enemigo');
+
+spanVidasJugador = document.getElementById('vidas-jugador');
+spanVidasEnemigo = document.getElementById('vidas-enemigo');
+
+let parrafoMensaje = document.getElementById('resultado');
+let ataquesDelJugador = document.getElementById('ataques-jugador');
+let ataquesDelEnemigo = document.getElementById('ataques-enemigo');
+
+let parrafoMensajeFinal = document.getElementById('resultado')
+
 let ataqueJugador;
 let ataqueEnemigo;
 let vidasEnemigo = 3;
@@ -6,28 +28,15 @@ let vidasJugador = 3;
 //funcion para iniciar el juego, leer el botones
 function iniciarJuego(){
     //oculta seccion seleccionar ataque
-    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
     sectionSeleccionarAtaque.style.display = 'none'
     ///
-
     //oculta boton reiniciar
-    let sectionBotonReiniciar = document.getElementById('reiniciar')
     sectionBotonReiniciar.style.display = 'none'
     //
-
-    let botonMascotaJugador = document.getElementById("boton-mascota");
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador)
-
-    let botonFuego = document.getElementById('boton-fuego');
     botonFuego.addEventListener('click', ataqueFuego)
-
-    let botonAgua = document.getElementById('boton-agua');
     botonAgua.addEventListener('click', ataqueAgua)
-
-    let botonTierra = document.getElementById('boton-tierra')
     botonTierra.addEventListener('click', ataqueTierra)
-
-    let botonReiniciar = document.getElementById('boton-reiniciar')
     botonReiniciar.addEventListener('click', reiniciarJuego)
 }
 
@@ -35,16 +44,12 @@ function iniciarJuego(){
 //funcion para seleccionar mascota Jugador
 function seleccionarMascotaJugador(mascota){
     //Oculta seccion seleccionar mascota
-    let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
     sectionSeleccionarMascota.style.display = 'none'
     //
 
     //mostrar seccion seleccionar ataque
-    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
     sectionSeleccionarAtaque.style.display = 'flex'
     ///
-
-
 
     //reemplazar el span por la mascota
     let spanMascotaJugador = document.getElementById('mascota-jugador');
@@ -74,13 +79,11 @@ function seleccionarMascotaJugador(mascota){
     }
 
     seleccionarMascotaEnemigo()
-
 }
 
 //funcion para quie el enemigo seleccione su mascota de manera aleatoria
 function seleccionarMascotaEnemigo(){
     let mascotaAleatorio = aleatorio(1,6)
-    let spanMascotaEnemigo = document.getElementById('mascota-enemigo');
 
     if(mascotaAleatorio == 1){
         console.log('Enemigo escogió Hipodoge')
@@ -150,8 +153,7 @@ function ataqueAleatorioEnemigo (){
 
 //funcion con la logica del combate
 function combate (){
-    spanVidasJugador = document.getElementById('vidas-jugador');
-    spanVidasEnemigo = document.getElementById('vidas-enemigo');
+    
     
     if (ataqueJugador == ataqueEnemigo){
         crearMensaje(resultado = 'Esto es Empate')
@@ -188,40 +190,23 @@ function revisarVidas() {
 
 }
 
-//funcion para crear el ultimo mensaje en el HTML
-function crearMensajeFinal(resultadoFinal){
-    let parrafoMensajeFinal = document.getElementById('resultado')
-
-    // let parrafoFinal = document.createElement('p')
-    parrafoMensajeFinal.innerHTML = resultadoFinal
-
-    // parrafoMensajeFinal.appendChild(parrafoFinal)
-
-    //deshabilitar botones al llegar las vidas a 0
-    let botonFuego = document.getElementById('boton-fuego');
-    botonFuego.disabled = true;
-
-    let botonAgua = document.getElementById('boton-agua');
-    botonAgua.disabled = true;
-
-    let botonTierra = document.getElementById('boton-tierra')
-    botonTierra.disabled = true;
-
-     //oculta boton reiniciar
-     let sectionBotonReiniciar = document.getElementById('reiniciar')
-     sectionBotonReiniciar.style.display = 'flex'
-     //
-}
 
 //funcion para generar los mensajes de los resultados de los ataques
 function crearMensaje(resultado){
-    let parrafoMensaje = document.getElementById('resultado');
-    let ataquesDelJugador = document.getElementById('ataques-jugador');
-    let ataquesDelEnemigo = document.getElementById('ataques-enemigo');
+    
+
+    let nuevoAtaqueDelJugador = document.createElement('p')
+    let nuevoAtaqueDelEnemigo = document.createElement('p')
 
     parrafoMensaje.innerHTML = resultado
-    ataquesDelJugador.innerHTML = ataqueJugador
-    ataquesDelEnemigo.innerHTML = ataqueEnemigo
+    nuevoAtaqueDelJugador.innerHTML = ataqueJugador;
+    nuevoAtaqueDelEnemigo.innerHTML = ataqueEnemigo;
+
+    ataquesDelJugador.appendChild(nuevoAtaqueDelJugador)
+    ataquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo)
+
+    // ataquesDelJugador.innerHTML = ataqueJugador
+    // ataquesDelEnemigo.innerHTML = ataqueEnemigo
 
 
     // let parrafo = document.createElement('p');
@@ -229,6 +214,25 @@ function crearMensaje(resultado){
     //   la mascota del enemigo atacó con ${ataqueEnemigo}, ${resultado}`)
 
 }
+
+//funcion para crear el ultimo mensaje en el HTML
+function crearMensajeFinal(resultadoFinal){
+    // let parrafoFinal = document.createElement('p')
+    parrafoMensajeFinal.innerHTML = resultadoFinal
+
+    // parrafoMensajeFinal.appendChild(parrafoFinal)
+
+    //deshabilitar botones al llegar las vidas a 0
+    botonFuego.disabled = true;
+    botonAgua.disabled = true;
+    botonTierra.disabled = true;
+
+    //oculta boton reiniciar
+    sectionBotonReiniciar.style.display = 'flex'
+    //
+}
+
+
 
 
 
