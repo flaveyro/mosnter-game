@@ -1,30 +1,55 @@
 //Variables globales
-let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
-let sectionBotonReiniciar = document.getElementById('reiniciar')
-let botonMascotaJugador = document.getElementById("boton-mascota");
-let botonFuego = document.getElementById('boton-fuego');
-let botonAgua = document.getElementById('boton-agua');
-let botonTierra = document.getElementById('boton-tierra')
-let botonReiniciar = document.getElementById('boton-reiniciar')
+const sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+const sectionBotonReiniciar = document.getElementById('reiniciar')
+const botonMascotaJugador = document.getElementById("boton-mascota");
+const botonFuego = document.getElementById('boton-fuego');
+const botonAgua = document.getElementById('boton-agua');
+const botonTierra = document.getElementById('boton-tierra')
+const botonReiniciar = document.getElementById('boton-reiniciar')
 
 
-let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
+const sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
 
-let spanMascotaEnemigo = document.getElementById('mascota-enemigo');
+const spanMascotaEnemigo = document.getElementById('mascota-enemigo');
 
 spanVidasJugador = document.getElementById('vidas-jugador');
 spanVidasEnemigo = document.getElementById('vidas-enemigo');
 
-let parrafoMensaje = document.getElementById('resultado');
-let ataquesDelJugador = document.getElementById('ataques-jugador');
-let ataquesDelEnemigo = document.getElementById('ataques-enemigo');
+const parrafoMensaje = document.getElementById('resultado');
+const ataquesDelJugador = document.getElementById('ataques-jugador');
+const ataquesDelEnemigo = document.getElementById('ataques-enemigo');
 
-let parrafoMensajeFinal = document.getElementById('resultado')
+const parrafoMensajeFinal = document.getElementById('resultado')
 
 let ataqueJugador;
 let ataqueEnemigo;
 let vidasEnemigo = 3;
 let vidasJugador = 3;
+
+//arreglo para meter los mokepones de la clase
+let mokepones = []
+
+//Clases y objetos START
+class Mokepon {
+    constructor(nombre, foto, vida, ataques){
+        this.name = nombre
+        this.photo = foto
+        this.life = vida
+        
+    }
+}
+
+        //objetos START:
+let hipodoge = new Mokepon('Hipodoge', './assets/mokepons_mokepon_hipodoge_attack.webp', 5)
+let capipepo = new Mokepon('Capipepo', './assets/mokepons_mokepon_capipepo_attack.webp',5)
+let ratigueya = new Mokepon('Ratigueya', './assets/mokepons_mokepon_ratigueya_attack.webp', 5)
+console.log(hipodoge)
+        //Objetos END
+
+mokepones.push(hipodoge, capipepo, ratigueya)//mete los objetos en el arreglo
+console.log(mokepones)
+//Clases y objetos END
+
 //funcion para iniciar el juego, leer el botones
 function iniciarJuego(){
     //oculta seccion seleccionar ataque
